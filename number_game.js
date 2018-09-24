@@ -66,7 +66,7 @@ else {
     }
     else if (highLow.toLowerCase() === 'l') {
     //if computer's number is low modify lowGuess
-      lowRange = currentGuess + 1;
+      lowRange = currentGuess;
       humanNum()
     }
     else {
