@@ -11,14 +11,14 @@ function ask(questionText) {
   });
 };
 
-let highGuess = 100;
-let lowGuess = 1;
+let highRange = 100;
+let lowRange = 1;
 
-start();
-async function start() {
-const currentGuess = Math.floor(Math.random() * (highGuess - lowGuess + 1) + lowGuess);
+humanNum();
+async function humanNum() {
+const currentGuess = Math.floor((highRange + lowRange)/2);
   //cheat detector: if lowGuess >= highGuess; cheater cheater pumpkin eater
-if (lowGuess + 1 >= highGuess) {
+if (lowRange + 1 >= highRange) {
   console.log('CHEATER, CHEATER, CHEATER!!!!!!');
   process.exit();
 }
@@ -34,23 +34,28 @@ else {
     let highLow = await ask('Is my number high or low (H/L)? ')
     if (highLow.toLowerCase() === 'h') {
     //if computer's number is high modify highGuess
-      highGuess = currentGuess;
-      start()
+      highRange = currentGuess;
+      humanNum()
     }
     else if (highLow.toLowerCase() === 'l') {
     //if computer's number is low modify lowGuess
-      lowGuess = currentGuess;
-      start()
+      lowRange = currentGuess;
+      humanNum()
     }
     else {
       console.log('Error. Invalid input.');
-      start()};
+      humanNum()};
 }
   else {
     console.log('Error. Invalid input.')
-    start()};
+    humanNum()};
   }};
 
 //to be implemented:
 
-  //smarter guess algorithm
+  //make loops instead of restarting the function
+
+//add guess_num in
+  //pass highguess/lowguess into start on edit and put initial highguess/loweguess inside function
+  //name async functions
+  //add in an initialize function for each game with user range setability
