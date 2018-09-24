@@ -11,10 +11,33 @@ function ask(questionText) {
   });
 };
 
-let highRange = 100;
-let lowRange = 1;
+init();
+async function init(){
+  let startUp = await ask('Would you like to play a game where I guess your number(1) or you guess my number(2)? ')
+  if (startUp === '1') {
+    humanNumInit();
+  }
+  else if(startUp === '2') {
+    compNumInit();
+  }
+  else {
+    console.log('Invalid input.')
+    init();
+  };
+};
 
-humanNum();
+function humanNumInit(){
+  highRange = 100;
+  lowRange = 1;
+  humanNum();
+};
+
+function compNumInit(){
+  computerNum = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+  console.log('I am thinking of a number between 1 and 100.');
+  compNum();
+};
+
 async function humanNum() {
 const currentGuess = Math.floor((highRange + lowRange)/2);
   //cheat detector: if lowGuess >= highGuess; cheater cheater pumpkin eater
@@ -50,12 +73,20 @@ else {
     console.log('Error. Invalid input.')
     humanNum()};
   }};
+  
+  async function compNum(){
+    //console.log(computerNum)
+    userNum = await ask ('Guess my number (1-100)?' )
+    if (userNum > computerNum){
+        console.log('Your guess is too high')
+    compNum()}
+    else if (parseInt(userNum, 10) === computerNum){
+        console.log('You are a WINNER!!!')
+    process.exit()}
+    else if (userNum < computerNum){
+        console.log('Your number is too low')
+    compNum()}
+    else{console.log('Invalid input!!!')
+    compNum()}    
 
-//to be implemented:
-
-  //make loops instead of restarting the function
-
-//add guess_num in
-  //pass highguess/lowguess into start on edit and put initial highguess/loweguess inside function
-  //name async functions
-  //add in an initialize function for each game with user range setability
+    };
