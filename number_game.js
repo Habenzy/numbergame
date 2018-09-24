@@ -14,7 +14,7 @@ function ask(questionText) {
 let highRange = 100;
 let lowRange = 1;
 
-humanNum(highRange, lowRange);
+humanNum();
 async function humanNum() {
 const currentGuess = Math.floor((highRange + lowRange)/2);
   //cheat detector: if lowGuess >= highGuess; cheater cheater pumpkin eater
