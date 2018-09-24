@@ -50,7 +50,11 @@ else {
   let answer = await ask('Is your number...' + currentGuess + ' Y/N? ')
   if (answer.toLowerCase() === 'y') {
     console.log('I am a victorious computer!');
-    process.exit()
+    let replay = await ask('Would you like to play again(Y/N)? ')
+    if (replay.toLowerCase() === 'y') {
+      init();
+    }
+    else {process.exit()};
   }
   else if (answer.toLowerCase() === 'n') {
   //modifies range according to user input (H/L)
@@ -75,14 +79,19 @@ else {
   }};
   
   async function compNum(){
-    //console.log(computerNum)
+    //cheat mode: console.log(computerNum)
     userNum = await ask ('Guess my number (1-100)?' )
     if (userNum > computerNum){
         console.log('Your guess is too high')
     compNum()}
     else if (parseInt(userNum, 10) === computerNum){
         console.log('You are a WINNER!!!')
-    process.exit()}
+        let replay = await ask('Would you like to play again(Y/N)? ')
+        if (replay.toLowerCase() === 'y') {
+          init();
+        }
+        else {process.exit()};
+      }
     else if (userNum < computerNum){
         console.log('Your number is too low')
     compNum()}
